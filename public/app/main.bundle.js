@@ -50,9 +50,9 @@ var AppRoutingModule = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* RouterModule */].forRoot(routes)
+                __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* RouterModule */].forRoot(routes)
             ],
-            exports: [__WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* RouterModule */]],
+            exports: [__WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* RouterModule */]],
             declarations: []
         })
     ], AppRoutingModule);
@@ -222,7 +222,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/navbar/navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark bg-dark fixed-top\">\n      <a class=\"navbar-brand\" href=\"#\">Shopping</a>\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarsExampleDefault\" aria-controls=\"navbarsExampleDefault\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n      </button>\n\n      <div class=\"collapse navbar-collapse\" id=\"navbarsExampleDefault\">\n        <ul class=\"navbar-nav ml-auto\">\n          <li id=\"NearbyShops\" class=\"nav-item\" routerLinkActive=\"active\">\n            <a class=\"nav-link\" [routerLink]=\"['/nearby-shops']\">\n              Nearby Shops\n            </a>\n          </li>\n          <li id=\"PreferredShops\" class=\"nav-item\" routerLinkActive=\"active\">\n            <a class=\"nav-link\" [routerLink]=\"['/preferred-shops']\">\n              My preferred Shops\n            </a>\n          </li>\n          <li id=\"logout\" class=\"nav-item\" routerLinkActive=\"active\">\n            <a class=\"nav-link disabled\">\n              Logout\n            </a>\n          </li>\n        </ul>\n      </div>\n</nav>"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark bg-dark fixed-top\">\n      <a class=\"navbar-brand\" href=\"#\">Shopping</a>\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarsExampleDefault\" aria-controls=\"navbarsExampleDefault\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n      </button>\n\n      <div class=\"collapse navbar-collapse\" id=\"navbarsExampleDefault\">\n        <ul class=\"navbar-nav ml-auto\">\n          <li id=\"NearbyShops\" class=\"nav-item\" routerLinkActive=\"active\">\n            <a class=\"nav-link\" [routerLink]=\"['/nearby-shops']\">\n              Nearby Shops\n            </a>\n          </li>\n          <li id=\"PreferredShops\" class=\"nav-item\" routerLinkActive=\"active\">\n            <a class=\"nav-link\" [routerLink]=\"['/preferred-shops']\">\n              My preferred Shops\n            </a>\n          </li>\n          <li id=\"logout\" class=\"nav-item\" routerLinkActive=\"active\">\n            <a class=\"nav-link\" (click)=\"logout()\">\n              Logout\n            </a>\n          </li>\n        </ul>\n      </div>\n</nav>"
 
 /***/ }),
 
@@ -232,6 +232,9 @@ module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark bg-dark fixed
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NavbarComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_shop_service__ = __webpack_require__("../../../../../src/app/services/shop.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_message_service__ = __webpack_require__("../../../../../src/app/services/message.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -242,10 +245,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var NavbarComponent = (function () {
-    function NavbarComponent() {
+    function NavbarComponent(shopService, messageService, router) {
+        this.shopService = shopService;
+        this.messageService = messageService;
+        this.router = router;
     }
     NavbarComponent.prototype.ngOnInit = function () {
+    };
+    NavbarComponent.prototype.logout = function () {
+        this.shopService.logout().subscribe(function (response) {
+            console.log(response);
+        });
     };
     NavbarComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -253,7 +267,9 @@ var NavbarComponent = (function () {
             template: __webpack_require__("../../../../../src/app/navbar/navbar.component.html"),
             styles: [__webpack_require__("../../../../../src/app/navbar/navbar.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_shop_service__["a" /* ShopService */],
+            __WEBPACK_IMPORTED_MODULE_3__services_message_service__["a" /* MessageService */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]])
     ], NavbarComponent);
     return NavbarComponent;
 }());
@@ -565,6 +581,9 @@ var ShopService = (function () {
      */
     ShopService.prototype.removeShop = function (id) {
         return this.http.get(this.server + "remove-shop/" + id).map(function (res) { return res.json(); });
+    };
+    ShopService.prototype.logout = function () {
+        return this.http.get(this.server + "log-out").map(function (res) { return res.json(); });
     };
     ShopService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),

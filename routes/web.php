@@ -37,3 +37,7 @@ Route::get('/preferred-shops', 'PreferredShopController@getPreferredShops');
 Route::get('/like-shop/{id}', 'NearbyShopController@likeShop');
 Route::get('/dislike-shop/{id}', 'NearbyShopController@dislikeShop');
 Route::get('/remove-shop/{id}', 'PreferredShopController@removeShop');
+Route::get('/log-out', function(){
+    Auth::logout();
+    return response()->json(['result' => 'success']);
+});
