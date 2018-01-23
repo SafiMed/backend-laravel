@@ -33,7 +33,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/nearby-shops', 'NearbyShopController@getNearbyShops');
 Route::get('/preferred-shops', 'PreferredShopController@getPreferredShops');
-//Route::get('/getShop/{id}', 'NearbyShopController@getShop');
 Route::get('/like-shop/{id}', 'NearbyShopController@likeShop');
 Route::get('/dislike-shop/{id}', 'NearbyShopController@dislikeShop');
 Route::get('/remove-shop/{id}', 'PreferredShopController@removeShop');

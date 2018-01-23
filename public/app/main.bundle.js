@@ -50,9 +50,9 @@ var AppRoutingModule = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* RouterModule */].forRoot(routes)
+                __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* RouterModule */].forRoot(routes)
             ],
-            exports: [__WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* RouterModule */]],
+            exports: [__WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* RouterModule */]],
             declarations: []
         })
     ], AppRoutingModule);
@@ -71,7 +71,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".sortable a {\r\n    cursor: pointer;\r\n}", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -209,7 +209,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "#title {\r\n    color: white;\r\n    font-family: 'Rockwell Condensed', sans-serif;\r\n    font-size: 25px;\r\n}\r\n\r\na { \r\n  cursor: pointer; \r\n}\r\n", ""]);
 
 // exports
 
@@ -222,7 +222,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/navbar/navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark bg-dark fixed-top\">\n      <a class=\"navbar-brand\" href=\"#\">Shopping</a>\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarsExampleDefault\" aria-controls=\"navbarsExampleDefault\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n      </button>\n\n      <div class=\"collapse navbar-collapse\" id=\"navbarsExampleDefault\">\n        <ul class=\"navbar-nav ml-auto\">\n          <li id=\"NearbyShops\" class=\"nav-item\" routerLinkActive=\"active\">\n            <a class=\"nav-link\" [routerLink]=\"['/nearby-shops']\">\n              Nearby Shops\n            </a>\n          </li>\n          <li id=\"PreferredShops\" class=\"nav-item\" routerLinkActive=\"active\">\n            <a class=\"nav-link\" [routerLink]=\"['/preferred-shops']\">\n              My preferred Shops\n            </a>\n          </li>\n          <li id=\"logout\" class=\"nav-item\" routerLinkActive=\"active\">\n            <a class=\"nav-link\" (click)=\"logout()\">\n              Logout\n            </a>\n          </li>\n        </ul>\n      </div>\n</nav>"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark bg-dark fixed-top\">\n      <a class=\"navbar-brand\" id=\"title\">Shopping</a>\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarsExampleDefault\" aria-controls=\"navbarsExampleDefault\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n      </button>\n\n      <div class=\"collapse navbar-collapse\" id=\"navbarsExampleDefault\">\n        <ul class=\"navbar-nav ml-auto\">\n          <li id=\"NearbyShops\" class=\"nav-item\" routerLinkActive=\"active\">\n            <a class=\"nav-link\" [routerLink]=\"['/nearby-shops']\">\n              Nearby Shops\n            </a>\n          </li>\n          <li id=\"PreferredShops\" class=\"nav-item\" routerLinkActive=\"active\">\n            <a class=\"nav-link\" [routerLink]=\"['/preferred-shops']\">\n              My preferred Shops\n            </a>\n          </li>\n          <li id=\"logout\" class=\"nav-item\" routerLinkActive=\"active\">\n            <a class=\"nav-link disabled\" (click)=\"logout()\">\n              Logout\n            </a>\n          </li>\n        </ul>\n      </div>\n</nav>"
 
 /***/ }),
 
@@ -232,9 +232,7 @@ module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark bg-dark fixed
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NavbarComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_shop_service__ = __webpack_require__("../../../../../src/app/services/shop.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_message_service__ = __webpack_require__("../../../../../src/app/services/message.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_shop_service__ = __webpack_require__("../../../../../src/app/services/shop.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -246,19 +244,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-
 var NavbarComponent = (function () {
-    function NavbarComponent(shopService, messageService, router) {
+    function NavbarComponent(shopService) {
         this.shopService = shopService;
-        this.messageService = messageService;
-        this.router = router;
     }
     NavbarComponent.prototype.ngOnInit = function () {
     };
+    /**
+     * asking the api service for logout function
+     */
     NavbarComponent.prototype.logout = function () {
-        this.shopService.logout().subscribe(function (response) {
-            console.log(response);
+        this.shopService.logout().subscribe(function (reponse) {
+            console.log(reponse);
         });
     };
     NavbarComponent = __decorate([
@@ -267,9 +264,7 @@ var NavbarComponent = (function () {
             template: __webpack_require__("../../../../../src/app/navbar/navbar.component.html"),
             styles: [__webpack_require__("../../../../../src/app/navbar/navbar.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_shop_service__["a" /* ShopService */],
-            __WEBPACK_IMPORTED_MODULE_3__services_message_service__["a" /* MessageService */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_shop_service__["a" /* ShopService */]])
     ], NavbarComponent);
     return NavbarComponent;
 }());
@@ -286,7 +281,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".navbar {\r\n  margin-bottom: 0;\r\n}\r\n\r\n.album {\r\n  min-height: 50rem; /* Can be removed; just added for demo purposes */\r\n  padding-top: 3rem;\r\n  padding-bottom: 3rem;\r\n  background-color: #f7f7f7;\r\n}\r\n\r\n.card {\r\n  float: left;\r\n  width: 25%;\r\n  padding: .75rem;\r\n  margin: 2rem;\r\n  border: 2;\r\n}\r\n\r\n.card > img {\r\n  margin: auto;\r\n  margin-bottom: .75rem;\r\n  display: block;\r\n  width: 230px;\r\n  height: 200px;\r\n}\r\n\r\n.caption {\r\n\ttext-align: center;\r\n  font-family: \"Times New Roman\", Georgia;\r\n  color:black;\r\n  font-size: 30px;\r\n}\r\n\r\n.button-group {\r\n\ttext-align: center;\r\n}\r\n", ""]);
+exports.push([module.i, ".navbar {\r\n  margin-bottom: 0;\r\n}\r\n\r\n.album {\r\n  min-height: 50rem; /* Can be removed; just added for demo purposes */\r\n  padding-top: 3rem;\r\n  padding-bottom: 3rem;\r\n  background-color: #f7f7f7;\r\n}\r\n\r\n.card {\r\n  float: left;\r\n  width: 25%;\r\n  padding: .75rem;\r\n  margin: 2rem;\r\n  border: 2;\r\n}\r\n\r\n.card > img {\r\n  margin: auto;\r\n  margin-bottom: .75rem;\r\n  display: block;\r\n  width: 230px;\r\n  height: 200px;\r\n}\r\n\r\n.caption {\r\n\ttext-align: center;\r\n  font-family: \"Times New Roman\", Georgia;\r\n  color:black;\r\n  font-size: 30px;\r\n}\r\n\r\n.button-group {\r\n\ttext-align: center;\r\n}\r\n\r\na { \r\n  cursor: pointer; \r\n}", ""]);
 
 // exports
 
@@ -390,7 +385,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".navbar {\r\n  margin-bottom: 0;\r\n}\r\n\r\n.album {\r\n  min-height: 50rem; /* Can be removed; just added for demo purposes */\r\n  padding-top: 3rem;\r\n  padding-bottom: 3rem;\r\n  background-color: #f7f7f7;\r\n}\r\n\r\n.card {\r\n  float: left;\r\n  width: 25%;\r\n  padding: .75rem;\r\n  margin: 2rem;\r\n  border: 2;\r\n}\r\n\r\n.card > img {\r\n  margin: auto;\r\n  margin-bottom: .75rem;\r\n  display: block;\r\n  width: 230px;\r\n  height: 200px;\r\n}\r\n\r\n.caption {\r\n\ttext-align: center;\r\n  font-family: \"Times New Roman\", Georgia;\r\n  color:black;\r\n  font-size: 30px;\r\n}\r\n\r\n.button-group {\r\n\ttext-align: center;\r\n}\r\n.navbar {\r\n  margin-bottom: 0;\r\n}\r\n\r\n.album {\r\n  min-height: 50rem; /* Can be removed; just added for demo purposes */\r\n  padding-top: 3rem;\r\n  padding-bottom: 3rem;\r\n  background-color: #f7f7f7;\r\n}\r\n\r\n.card {\r\n  float: left;\r\n  width: 25%;\r\n  padding: .75rem;\r\n  margin: 2rem;\r\n  border: 2;\r\n}\r\n\r\n.card > img {\r\n  margin: auto;\r\n  margin-bottom: .75rem;\r\n  display: block;\r\n  width: 230px;\r\n  height: 200px;\r\n}\r\n\r\n.caption {\r\n\ttext-align: center;\r\n  font-family: \"Times New Roman\", Georgia;\r\n  color:black;\r\n  font-size: 30px;\r\n}\r\n\r\n.button-group {\r\n\ttext-align: center;\r\n}\r\n", ""]);
+exports.push([module.i, ".navbar {\r\n  margin-bottom: 0;\r\n}\r\n\r\n.album {\r\n  min-height: 50rem; /* Can be removed; just added for demo purposes */\r\n  padding-top: 3rem;\r\n  padding-bottom: 3rem;\r\n  background-color: #f7f7f7;\r\n}\r\n\r\n.card {\r\n  float: left;\r\n  width: 25%;\r\n  padding: .75rem;\r\n  margin: 2rem;\r\n  border: 2;\r\n}\r\n\r\n.card > img {\r\n  margin: auto;\r\n  margin-bottom: .75rem;\r\n  display: block;\r\n  width: 230px;\r\n  height: 200px;\r\n}\r\n\r\n.caption {\r\n\ttext-align: center;\r\n  font-family: \"Times New Roman\", Georgia;\r\n  color:black;\r\n  font-size: 30px;\r\n}\r\n\r\n.button-group {\r\n\ttext-align: center;\r\n}\r\n.navbar {\r\n  margin-bottom: 0;\r\n}\r\n\r\n.album {\r\n  min-height: 50rem; /* Can be removed; just added for demo purposes */\r\n  padding-top: 3rem;\r\n  padding-bottom: 3rem;\r\n  background-color: #f7f7f7;\r\n}\r\n\r\n.card {\r\n  float: left;\r\n  width: 25%;\r\n  padding: .75rem;\r\n  margin: 2rem;\r\n  border: 2;\r\n}\r\n\r\n.card > img {\r\n  margin: auto;\r\n  margin-bottom: .75rem;\r\n  display: block;\r\n  width: 230px;\r\n  height: 200px;\r\n}\r\n\r\n.caption {\r\n\ttext-align: center;\r\n  font-family: \"Times New Roman\", Georgia;\r\n  color:black;\r\n  font-size: 30px;\r\n}\r\n\r\n.button-group {\r\n\ttext-align: center;\r\n}\r\n\r\na { \r\n  cursor: pointer; \r\n}\r\n", ""]);
 
 // exports
 
@@ -582,8 +577,11 @@ var ShopService = (function () {
     ShopService.prototype.removeShop = function (id) {
         return this.http.get(this.server + "remove-shop/" + id).map(function (res) { return res.json(); });
     };
+    /**
+     * sending logout order
+     */
     ShopService.prototype.logout = function () {
-        return this.http.get(this.server + "log-out").map(function (res) { return res.json(); });
+        return this.http.get(this.server + "log-out/");
     };
     ShopService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
